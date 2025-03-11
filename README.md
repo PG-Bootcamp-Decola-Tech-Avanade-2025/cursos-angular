@@ -24,3 +24,15 @@ Essa funcionalidade é denominada interpolação de dados.
     - É possível utilizar data binding em propriedades html também; Como um exemplo, utilizando binding para alterar o estilo de um componente: Definida a propriedade color no componente pai, pode-se utilizar `<tag [style.color]="color"></tag>`.
 - Event binding é realizado com parênteses. Como em: `(<html-event-name>) = "<component-method-invocation>"`. Associa um método qualquer do componente a um evento HTML como `click` e `mouseover`. É permitido passar parâmetros para a chamada de método.
 - Two-way binding é realizado com colchetes e parênteses aninhados e a diretiva ngModel. Como em: `([ngModel]) = "<property-name>"`. É usada em elementos de input; Recupera e escreve na propriedade que referencia. Para que se possa utilizar da diretiva `ngModel`, é necessário importar o pacote `FormsModule` no componente.
+
+#### Lifecycle Hooks
+- Definidos como interfaces que os componentes devem implementar.
+- São, em ordem geral de execução:
+    - `OnInit`: Executado na inicialização do componente.
+    - `OnChanges`: Executado quando há mudança nas props.
+    - `DoCheck`: Executado sempre que há verificação internamente no componente. Sob uma perspectiva de lifecycle, são parte da fase check: 
+        - `AfterContentInit`
+        - `AfterContentChecked` 
+        - `AfterViewInit`
+        - `AfterViewChecked`
+    - `OnDestroy`: Executado quando o componente é destruído; Quando deixa de ser renderizado.
