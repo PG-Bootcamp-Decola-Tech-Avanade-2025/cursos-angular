@@ -18,3 +18,9 @@ Essa funcionalidade é denominada interpolação de dados.
 - Anotando uma propriedade com o decorator `@Input()`, é possível abrir uma propriedade para receber valores externos através de propriedades em sua tag html.
     - Passa-se um valor para uma propriedade anotada com `@Input()` como em: `<tag <prop-name> = <valor>></tag>`.
     - Pode-se passar o valor de uma propriedade de um componente para uma propriedade de um componente filho fazendo uso de colchetes; Como em: `<tag [<child-prop-name>]="<parent-prop-name>"></tag>`. Também é possível utilizar uma notação mais simples, mais adequada ao padrão do que foi visto até agora; Como em: `<tag <child-prop-name>="{{<parent-prop-name>}}"></tag>`.
+
+#### Outras Formas de Data Binding
+- Property binding é realizado com colchetes; Como em: `[<child-prop-name>] = "<parent-prop-name>"`. Envia valor de propriedade do componente para outro componente filho.
+    - É possível utilizar data binding em propriedades html também; Como um exemplo, utilizando binding para alterar o estilo de um componente: Definida a propriedade color no componente pai, pode-se utilizar `<tag [style.color]="color"></tag>`.
+- Event binding é realizado com parênteses. Como em: `(<html-event-name>) = "<component-method-invocation>"`. Associa um método qualquer do componente a um evento HTML como `click` e `mouseover`. É permitido passar parâmetros para a chamada de método.
+- Two-way binding é realizado com colchetes e parênteses aninhados e a diretiva ngModel. Como em: `([ngModel]) = "<property-name>"`. É usada em elementos de input; Recupera e escreve na propriedade que referencia. Para que se possa utilizar da diretiva `ngModel`, é necessário importar o pacote `FormsModule` no componente.
