@@ -1,0 +1,15 @@
+<h2>Angular Lifecycle Order</h2>
+<input type="text" [(ngModel)]="newMessage">
+<button (click)="addMessage()">Add Message</button>
+<ul>
+    @if(messages.length < historyMaxLength() ) { @for (message of messages; track $index) { <li>{{ message[0] }} - {{
+        message[1] }}</li>
+        }
+        }
+        @else {
+        <li>...</li>
+        @for (message of messages | slice : -(historyMaxLength() + 1); track $index){
+        <li>{{ message[0] }} - {{ message[1] }}</li>
+        }
+        }
+</ul>
