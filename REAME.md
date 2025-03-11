@@ -9,3 +9,7 @@ O projeto em desenvolvimento foi inicializado com o comando a CLI do Angular, ut
 ### Angular Components
 - Gerado com `ng g c <component-name>` ou `ng generate component <component-name>`.
 - Para utilizar um componente dentro de outro, a classe do componente deve ser adicionada aos imports do componente pai.
+- Com `{{ <prop-name> }}` no template de um componente, é possível acessar suas propriedades; Funciona não somente para valores únicos mas também para objetos mais complexos como:
+    - Arrays com `{{ <array-prop>[<index>] }}`.
+    - Objetos com `{{ <object-prop>.<object-prop-name> }}`.
+Essa funcionalidade é denominada interpolação de dados.
