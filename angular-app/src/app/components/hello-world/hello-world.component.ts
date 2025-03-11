@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './hello-world.component.css'
 })
 export class HelloWorldComponent {
-
+  protected name: string = "name prop";
 }
