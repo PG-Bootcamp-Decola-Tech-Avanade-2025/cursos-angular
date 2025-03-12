@@ -1,16 +1,72 @@
+<style>
+    .columns {
+        display: flex;
+        justify-content: space-evenly;
+    }
+</style>
+
+<h2>If</h2>
 <button (click)="toggleIsEnabled()">Toggle isEnabled bool</button> <span>isEnabled = {{ isEnabled }}</span>
+<div class="columns">
+    <div>
+        <h3>If com diretiva ngIf</h3>
+        <p *ngIf="isEnabled; else elseBlock">This p is enabled by ngIf directive.</p>
+        <ng-template #elseBlock>
+            <p>This block is else by ngIf directive.</p>
+        </ng-template>
+    </div>
+    <div>
+        <h3>If com &commat;if</h3>
+        @if (isEnabled) {
+        <p>This p is enabled by if.</p>
+        } @else if (true) {
+        <p>This p is enabled by else if.</p>
+        } @else {
+        <p>This unreachable p is enabled by else.</p>
+        }
+    </div>
+</div>
 
-<!-- Modo tradicional -->
-<p *ngIf="isEnabled; else elseBlock">This p is enabled by ngIf directive.</p>
-<ng-template #elseBlock>
-    <p>This block is else by ngIf directive.</p>
-</ng-template>
+<hr>
 
-<!-- Modo mais moderno, incluso nas versões mais recentes do Angular -->
-@if (isEnabled) {
-<p>This p is enabled by if.</p>
-} @else if (true) {
-<p>This p is enabled by else if.</p>
-} @else {
-<p>This unreachable p is enabled by else.</p>
-}
+<h2>Switch</h2>
+<input type="number" [(ngModel)]="currentValue">
+<div class="columns">
+    <div>
+        <h3>Switch com diretiva ngSwitch</h3>
+        <div [ngSwitch]="getMod(currentValue, 2)">
+            <p *ngSwitchCase=1>Ímpar</p>
+            <p *ngSwitchCase=0>Par</p>
+            <p *ngSwitchDefault>0</p>
+        </div>
+    </div>
+    <div>
+        <h3>Switch com &commat;switch</h3>
+        @switch (getMod(currentValue, 2)){
+        @case (1) { <p>Ímpar</p> }
+        @case (0) { <p>Par</p> }
+        @default { <p>0</p> }
+        }
+    </div>
+</div>
+
+<hr>
+
+<h2>For</h2>
+<input type="text" [(ngModel)]="listInput"><button (click)="pushToList(listInput)">Add to List</button>
+<div class="columns">
+    <div>
+        <h3>For com diretiva ngFor</h3>
+        <ol>
+            <li *ngFor="let s of list; let i = index" (click)="popFromList(i)">{{s}}</li>
+        </ol>
+    </div>
+    <div>
+        <h3>For com &commat;For</h3>
+        <ol>
+            @for(s of list; track $index; let i = $index) {
+            <li (click)="popFromList(i)">{{ s }}</li>
+            }
+        </ol>
+    </div>
+</div>
