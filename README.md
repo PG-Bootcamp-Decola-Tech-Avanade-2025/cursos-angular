@@ -36,3 +36,24 @@ Essa funcionalidade é denominada interpolação de dados.
         - `AfterViewInit`
         - `AfterViewChecked`
     - `OnDestroy`: Executado quando o componente é destruído; Quando deixa de ser renderizado.
+
+#### Diretivas Angular
+
+##### Diretivas Estruturais
+- `ngIf`: Como uma cláusula if tradicional, define se um componente deve ou não ser renderizado com base em uma condicional; Pode ser aplicada em tags html e componentes angular como: `<tag *ngIf="<condicional>"></tag>` onde a condicional pode ser um simples valor booleano ou uma propriedade do componente pai.
+A diretiva `ngIf` pode ser usada acompanhada de um bloco else definido com um componente `ng-template` como em:
+    ```
+    <tag *ngIf="<condicional>; else <nome-do-bloco>"></tag>
+    <ng-template #<nome-do-bloco>>
+        <p>Este bloco só é renderizado caso <condicional> seja falso<p>
+    </ng-template>
+    ```
+- `ngFor`: Emula o funcionamento de uma cláusula foreach, renderizando dado componente ou bloco com base em uma lista de dados; Pode ser aplicado como: `<tag *ngFor="let <nome-do-iterador> of <lista>; let i = index">` onde a segunda parte da declaração, capturando index, é opcional.
+- `ngSwitch`: Emula o funcionamento de um bloco switch-case, renderizando um dentre vários casos possíveis; Diferente das outras diretivas, usa-se um par de colchetes para invocar. Aplica-se como:
+    ```
+    <tag [ngSwitch]="<prop>">
+        <tag *ngSwitchCase="'<opção-1>'">Este bloco só é renderizado caso <prop> tenha valor de <opção-1></tag>
+        <tag *ngSwitchCase="'<opção-2>'">Este bloco só é renderizado caso <prop> tenha valor de <opção-2></tag>
+    </tag>
+    ```
+
