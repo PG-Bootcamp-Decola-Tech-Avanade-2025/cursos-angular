@@ -86,3 +86,7 @@ A diretiva `ngIf` pode ser usada acompanhada de um bloco else definido com um co
     <hr>
     ```
 
+### Angular Modules
+- São agrupamentos de componentes; Úteis para organização.
+- Não são tão relevantes em versões do Angular que implementam componentes stand-alone mas ainda têm seu uso.
+- Em sua estrutura, pode importar e exportar componentes, exportando apenas os módulos que devem ser disponibilizados para componentes que importarem esse módulo.
