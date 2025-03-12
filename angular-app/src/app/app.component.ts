@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HelloWorldComponent } from './components/hello-world/hello-world.component';
 import { DataEntryComponent } from './components/data-entry/data-entry.component';
 import { LifecycleComponent } from './components/lifecycle/lifecycle.component';
+import { DirectivesComponent } from './components/directives/directives.component';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { LifecycleComponent } from './components/lifecycle/lifecycle.component';
     HelloWorldComponent,
     DataEntryComponent,
     LifecycleComponent,
+    DirectivesComponent,
     RouterOutlet
   ],
   templateUrl: './app.component.html',

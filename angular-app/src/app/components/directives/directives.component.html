@@ -1,0 +1,16 @@
+<button (click)="toggleIsEnabled()">Toggle isEnabled bool</button> <span>isEnabled = {{ isEnabled }}</span>
+
+<!-- Modo tradicional -->
+<p *ngIf="isEnabled; else elseBlock">This p is enabled by ngIf directive.</p>
+<ng-template #elseBlock>
+    <p>This block is else by ngIf directive.</p>
+</ng-template>
+
+<!-- Modo mais moderno, incluso nas versões mais recentes do Angular -->
+@if (isEnabled) {
+<p>This p is enabled by if.</p>
+} @else if (true) {
+<p>This p is enabled by else if.</p>
+} @else {
+<p>This unreachable p is enabled by else.</p>
+}
