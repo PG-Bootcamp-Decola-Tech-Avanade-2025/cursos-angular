@@ -8,10 +8,12 @@
 </head>
 
 <body>
-  <app-hello-world [name]="title"></app-hello-world>
-  <app-hello-world name="{{ title }}"></app-hello-world>
-  <app-hello-world name="Angular"></app-hello-world>
-  <app-hello-world></app-hello-world>
+  <div class="columns">
+    <app-hello-world [name]="title"></app-hello-world>
+    <app-hello-world name="{{ title }}"></app-hello-world>
+    <app-hello-world name="Angular"></app-hello-world>
+    <app-hello-world></app-hello-world>
+  </div>
   <hr>
   <app-data-entry></app-data-entry>
   <hr>
