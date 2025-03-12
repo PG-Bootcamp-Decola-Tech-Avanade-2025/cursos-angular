@@ -40,20 +40,49 @@ Essa funcionalidade é denominada interpolação de dados.
 #### Diretivas Angular
 
 ##### Diretivas Estruturais
-- `ngIf`: Como uma cláusula if tradicional, define se um componente deve ou não ser renderizado com base em uma condicional; Pode ser aplicada em tags html e componentes angular como: `<tag *ngIf="<condicional>"></tag>` onde a condicional pode ser um simples valor booleano ou uma propriedade do componente pai.
+- `ngIf`: Como uma cláusula if tradicional, define se um componente deve ou não ser renderizado com base em uma condicional; Pode ser aplicada em tags html e componentes angular como: `<tag *ngIf="<conditional>"></tag>` onde a condicional pode ser um simples valor booleano ou uma propriedade do componente pai.
 A diretiva `ngIf` pode ser usada acompanhada de um bloco else definido com um componente `ng-template` como em:
     ```
-    <tag *ngIf="<condicional>; else <nome-do-bloco>"></tag>
-    <ng-template #<nome-do-bloco>>
+    <tag *ngIf="<conditional>; else <else-block-name>"></tag>
+    <ng-template #<else-block-name>>
         <p>Este bloco só é renderizado caso <condicional> seja falso<p>
     </ng-template>
     ```
-- `ngFor`: Emula o funcionamento de uma cláusula foreach, renderizando dado componente ou bloco com base em uma lista de dados; Pode ser aplicado como: `<tag *ngFor="let <nome-do-iterador> of <lista>; let i = index">` onde a segunda parte da declaração, capturando index, é opcional.
+- `ngFor`: Emula o funcionamento de uma cláusula foreach, renderizando dado componente ou bloco com base em uma lista de dados; Pode ser aplicado como: `<tag *ngFor="let <iterator-item-name> of <parent-list-prop-name>; let <index-name> = index">` onde a segunda parte da declaração, capturando index, é opcional.
 - `ngSwitch`: Emula o funcionamento de um bloco switch-case, renderizando um dentre vários casos possíveis; Diferente das outras diretivas, usa-se um par de colchetes para invocar. Aplica-se como:
     ```
-    <tag [ngSwitch]="<prop>">
-        <tag *ngSwitchCase="'<opção-1>'">Este bloco só é renderizado caso <prop> tenha valor de <opção-1></tag>
-        <tag *ngSwitchCase="'<opção-2>'">Este bloco só é renderizado caso <prop> tenha valor de <opção-2></tag>
+    <tag [ngSwitch]="<parent-component-prop>">
+        <tag *ngSwitchCase="'<option-1>'">Este bloco só é renderizado caso <parent-component-prop> tenha valor de <opção-1></tag>
+        <tag *ngSwitchCase="'<option-2>'">Este bloco só é renderizado caso <parent-component-prop> tenha valor de <opção-2></tag>
     </tag>
+    ```
+
+##### Diretivas de Atributo
+- `ngClass`: Permite fazer o bind das classes CSS de uma tag a uma propriedade do componente. É usada com colchetes; Como em: `<tag [ngClass]="<parent-prop-name>">`.
+- `ngStyle`: Permite fazer o bind de propriedades CSS de uma tag a uma propriedade do componente. É usada com colchete e recebe um objeto no qual chave é a propriedade CSS e valor é a propriedade do componente; Como em: `<tag [ngStyle]="{<css-prop>: <parent-prop-name>, <...>: <...>}">`
+- `ngModel`: Permite comunicação bidirecional entre template e propriedades do componente. É usada com a estrutura `[()]`; Como em: `<tag [(ngModel)]="<parent-prop-name>">`.
+- `ng-template`: É usada como um componente; Serve como um container para partes da estrutura do componente que são renderizadas condicionalmente. Bastante usada em conjunto com a diretiva `ngIf`; Nesse contexto, podem agir como bloco if e else.
+- `ng-content`: É usada como um componente; Serve para recuperar conteúdo passado no interior da tag do componente. Com a propriedade `select`, é possível recuperar elementos específicos. É utilizado como:
+    ```
+    <angular-component>
+        <h1>A Title</h1>
+        <p>Some Text</p>
+    </angular-component>    
+    ```
+    E, na template do componente `angular-component`:
+    ```
+    <ng-content select="h1">
+    <br>
+    <p>This is some content:</p>
+    <ng-content select="p">
+    <hr>
+    ```
+    Resultando em:
+    ```
+    <h1>A Title</h1>
+    <br>
+    <p>This is some content:</p>
+    <p>Some Text</p>
+    <hr>
     ```
 
