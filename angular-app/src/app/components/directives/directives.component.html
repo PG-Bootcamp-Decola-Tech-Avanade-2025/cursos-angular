@@ -1,12 +1,16 @@
 <style>
-    .columns {
-        display: flex;
-        justify-content: space-evenly;
+    .enabled {
+        color: green;
+    }
+
+    .disabled {
+        color: red;
     }
 </style>
 
 <h2>If</h2>
-<button (click)="toggleIsEnabled()">Toggle isEnabled bool</button> <span>isEnabled = {{ isEnabled }}</span>
+<button (click)="toggleIsEnabled()">Toggle isEnabled bool</button> <span [ngClass]="stylesClass">isEnabled = {{
+    isEnabled }}</span>
 <div class="columns">
     <div>
         <h3>If com diretiva ngIf</h3>

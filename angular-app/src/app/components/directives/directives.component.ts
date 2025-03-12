@@ -1,4 +1,4 @@
-import { CommonModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { NgClass, NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
     NgSwitchCase,
     NgSwitchDefault,
     NgFor,
+    NgClass,
     FormsModule
   ],
   templateUrl: './directives.component.html',
@@ -20,9 +21,11 @@ export class DirectivesComponent {
   currentValue: number = 0;
   listInput: string = "";
   list: string[] = []
+  stylesClass: string = "enabled";
 
   toggleIsEnabled(): void {
     this.isEnabled = !this.isEnabled;
+    this.stylesClass = this.isEnabled ? "enabled" : "disabled";
   }
 
   getMod(value: number, mod: number): number {
