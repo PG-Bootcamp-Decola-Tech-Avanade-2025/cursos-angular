@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-hello-world',
@@ -8,4 +10,12 @@ import { Component, Input } from '@angular/core';
 })
 export class HelloWorldComponent {
   @Input() name: string = "world";
+
+  activeRoute: ActivatedRoute = inject(ActivatedRoute);
+
+  constructor() {
+      this.activeRoute.queryParams.subscribe(
+        (params: Params) => this.name = params.hasOwnProperty("name") ?  params["name"] : this.name
+      )
+  }
 }
