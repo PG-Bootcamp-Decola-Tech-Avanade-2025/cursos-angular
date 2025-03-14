@@ -95,12 +95,29 @@ A diretiva `ngIf` pode ser usada acompanhada de um bloco else definido com um co
 - Roteamento, em SPAs, funcionada para determinar qual componente ou grupo de componentes está sendo renderizado; Difere da função do roteamento em websites tradicionais pois esses, ao chamar uma nova rota, fazem uma nova requisição ao servidor da aplicação para recuperar a página correspondente enquanto SPAs carregam todas as suas rotas imediatamente.
 - No Angular, rotas são implementadas através do uso de `Routes` que, após criadas, devem ser registradas no arquivo `app.config.ts` adicionando o `provider` `provideRouter()` e passando o objeto `Routes` criado.
 - A estrutura de uma `Route` recebe as seguintes propriedades:
-    - `path`: É a URL pela qual a rota é acessada.
+    - `path`: É a URL pela qual a rota é acessada. No path também são definidos parâmetros de rota adicionando `:` seguido do nome do parâmetro; Como em: `/resources/:id`.
     - `component`: É o componente Angular que deve ser carregado ao acessar a rota.
     - `pathMatch`: É a estratégia usada para interpretar a url; Pode ser 'full' (a url deve corresponder exatamente ao path) ou 'prefix' (a url deve iniciar com o path).
     - `redirectTo`: É um path ao qual essa rota deve redirecionar. É usado para capturar rotas incorretas e redirecionar o usuário até a rota padrão. Geralmente, não é usado em rotas que tem a propriedade `component` definida.
+    - `children`: Recebe uma lista de outras Routes que serão acessíveis com o path da rota pai somado ao seu próprio path; Podem renderizar componentes distintos ou iguais, são como rotas independentes.
 - Para utilizar rotas em um componente, é necessário importar o módulo `RouterModule` e a classe `RouterOutlet` e, então, incluir na template o componente `<router-outlet></router-outlet>`, o qual serve como um placeholder para os componentes carregados pela rota.
 - Para navegar entre rotas, deve-se utilizar o elemento *anchor* em conjunto com a prop `routerLink`; Como em: `<a [routerLink]="['<route-path>']"> Link </a>`.
 - Na definição de rotas, o símbolo `**` age como um coringa, aceitando qualquer conteúdo; Uma aplicação prática é para capturar rotas incorretas e redirecionar para a URL base.
+
+#### routerLinkActive
 - Utilizando a prop `routerLinkActive`, é possível adicionar uma classe CSS ao elemento; Tem utilidade, por exemplo, para dar feedback visual ao usuário de qual rota em um menu de navegação está selecionada; É utilizado como: `<a [routerLink]="['<route-path>']" [routerLinkActive]="['<css-class>']"></a>`.
 - Adicionalmente, é possível adicionar a propriedade `routerLinkActiveOptions` para configurar quando a prop `routerLinkActive` deve ser chamada; Sua principal propriedade é a `exact` que define se, para acionar a classe CSS determinada, a correspondência deve ser completa ou se a rota apenas deve estar contida na URL; É usada como em: `[routerLinkActiveOptions]="{exact: true}"`.
+
+#### Parâmetros de Rota e Query Params
+- Podem ser recuperados através da classe `ActivatedRoute` que, após injetada no component por `inject(ActivatedRoute)` ou pelo construtor, disponibiliza os parâmetros via um `Observable`.
+- Para recuperar os valores em si, deve-se utilizar o método `subscribe` para registrar uma função que irá recuperar o valor; Como em:
+    ```
+    this.activeRoute.queryParams.subscribe(
+        (params: Params) => this.name = params.hasOwnProperty("name") ?  params["name"] : this.name
+    )
+    ```
+- No caso de rotas aninhadas, os params também vem de maneira aninhada; Como: `this.activeRoute.firstChild.QUeryParams...`.
+
+#### Router em Componentes
+- A classe `Router` é uma classe injetável; Trazendo-a para dentro de componentes, é possível navegar pelas rotas através do código.
+- O método `navigate` pode ser utilizado para mudar a rota atual.
