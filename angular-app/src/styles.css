@@ -3,3 +3,8 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.activeRouteLink {
+  border-bottom: 2px;
+  color: red !important;
+}

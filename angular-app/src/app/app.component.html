@@ -8,18 +8,17 @@
 </head>
 
 <body>
-  <div class="columns">
-    <app-hello-world [name]="title"></app-hello-world>
-    <app-hello-world name="{{ title }}"></app-hello-world>
-    <app-hello-world name="Angular"></app-hello-world>
-    <app-hello-world></app-hello-world>
-  </div>
-  <hr>
-  <app-data-entry></app-data-entry>
-  <hr>
-  <app-lifecycle [historyMaxLength]="5"></app-lifecycle>
-  <hr>
-  <app-directives></app-directives>
+  <h1>Demos</h1>
+  <br>
+  <ul>
+    <li><a [routerLink]="['']" [routerLinkActive]="['activeRouteLink']" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+    <li><a [routerLink]="['data-binding']" [routerLinkActive]="['activeRouteLink']">Data Binding</a></li>
+    <li><a [routerLink]="['input']" [routerLinkActive]="['activeRouteLink']">Input</a></li>
+    <li><a [routerLink]="['lifecycle']" [routerLinkActive]="['activeRouteLink']">Lifecycle</a></li>
+    <li><a [routerLink]="['directives']" [routerLinkActive]="['activeRouteLink']">Directives</a></li>
+  </ul>
+
+  <router-outlet></router-outlet>
 </body>
 
 </html>
