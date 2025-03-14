@@ -90,3 +90,17 @@ A diretiva `ngIf` pode ser usada acompanhada de um bloco else definido com um co
 - São agrupamentos de componentes; Úteis para organização.
 - Não são tão relevantes em versões do Angular que implementam componentes stand-alone mas ainda têm seu uso.
 - Em sua estrutura, pode importar e exportar componentes, exportando apenas os módulos que devem ser disponibilizados para componentes que importarem esse módulo.
+
+### Routing no Angular
+- Roteamento, em SPAs, funcionada para determinar qual componente ou grupo de componentes está sendo renderizado; Difere da função do roteamento em websites tradicionais pois esses, ao chamar uma nova rota, fazem uma nova requisição ao servidor da aplicação para recuperar a página correspondente enquanto SPAs carregam todas as suas rotas imediatamente.
+- No Angular, rotas são implementadas através do uso de `Routes` que, após criadas, devem ser registradas no arquivo `app.config.ts` adicionando o `provider` `provideRouter()` e passando o objeto `Routes` criado.
+- A estrutura de uma `Route` recebe as seguintes propriedades:
+    - `path`: É a URL pela qual a rota é acessada.
+    - `component`: É o componente Angular que deve ser carregado ao acessar a rota.
+    - `pathMatch`: É a estratégia usada para interpretar a url; Pode ser 'full' (a url deve corresponder exatamente ao path) ou 'prefix' (a url deve iniciar com o path).
+    - `redirectTo`: É um path ao qual essa rota deve redirecionar. É usado para capturar rotas incorretas e redirecionar o usuário até a rota padrão. Geralmente, não é usado em rotas que tem a propriedade `component` definida.
+- Para utilizar rotas em um componente, é necessário importar o módulo `RouterModule` e a classe `RouterOutlet` e, então, incluir na template o componente `<router-outlet></router-outlet>`, o qual serve como um placeholder para os componentes carregados pela rota.
+- Para navegar entre rotas, deve-se utilizar o elemento *anchor* em conjunto com a prop `routerLink`; Como em: `<a [routerLink]="['<route-path>']"> Link </a>`.
+- Na definição de rotas, o símbolo `**` age como um coringa, aceitando qualquer conteúdo; Uma aplicação prática é para capturar rotas incorretas e redirecionar para a URL base.
+- Utilizando a prop `routerLinkActive`, é possível adicionar uma classe CSS ao elemento; Tem utilidade, por exemplo, para dar feedback visual ao usuário de qual rota em um menu de navegação está selecionada; É utilizado como: `<a [routerLink]="['<route-path>']" [routerLinkActive]="['<css-class>']"></a>`.
+- Adicionalmente, é possível adicionar a propriedade `routerLinkActiveOptions` para configurar quando a prop `routerLinkActive` deve ser chamada; Sua principal propriedade é a `exact` que define se, para acionar a classe CSS determinada, a correspondência deve ser completa ou se a rota apenas deve estar contida na URL; É usada como em: `[routerLinkActiveOptions]="{exact: true}"`.
